@@ -3,7 +3,9 @@
  * Module dependencies.
  */
 
-var express = require('express');
+var express = require('express'),
+    log4js = require('log4js');
+var logger = log4js.getLogger();
 
 var app = module.exports = express.createServer();
 
@@ -40,7 +42,7 @@ app.get('/', function(req, res){
 	          posts: posts
 	        }
 	});
-  })
+  });
 });
 
 //new
@@ -100,7 +102,7 @@ app.post('/posts/addComment', function(req, res){
     comment: req.body.comment,
     created_at: new Date()
   }, function(error, docs) {
-    res.redirect('/posts/' + req.body._id)
+    res.redirect('/posts/' + req.body._id);
   });
 });
 
